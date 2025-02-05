@@ -1,7 +1,5 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
 using WebApp.Models;
 
 namespace WebApp.Controllers;
@@ -9,21 +7,16 @@ namespace WebApp.Controllers;
 public class StudentController : Controller
 {
     private readonly ILogger<StudentController> _logger;
-    private static List<Student> Students = new List<Student>();
+    private static List<Student> _Students = new List<Student>();
 
     public StudentController(ILogger<StudentController> logger)
     {
         _logger = logger;
     }
 
-    public IActionResult Index(int? id)
+    public IActionResult Index()
     {
-        if (id.HasValue) 
-        {
-            var student = Students.FirstOrDefault(s => s.Id == id.Value);
-            ViewBag.Student = student;
-        }
-        return View(Students);
+        return View(_Students);
     }
     
 
@@ -34,12 +27,12 @@ public class StudentController : Controller
     {
         if (student.Id == 0) // New student
         {
-            student.Id = Students.Count > 0 ? Students.Max(s => s.Id) + 1 : 1;
-            Students.Add(student);
+            student.Id = _Students.Count > 0 ? _Students.Count() + 1 : 1;
+            _Students.Add(student);
         }
         else // Update existing student
         {
-            var existingStudent = Students.FirstOrDefault(s => s.Id == student.Id);
+            var existingStudent = _Students.FirstOrDefault(s => s.Id == student.Id);
             if (existingStudent != null)
             {
                 existingStudent.Name = student.Name;
@@ -55,10 +48,10 @@ public class StudentController : Controller
     [HttpGet]
     public IActionResult DeleteStudent(int id)
     {
-        var student = Students.FirstOrDefault(s => s.Id == id);
+        var student = _Students.FirstOrDefault(s => s.Id == id);
         if (student != null)
         {
-            Students.Remove(student);
+            _Students.Remove(student);
         }
         return RedirectToAction("Index");
     }
