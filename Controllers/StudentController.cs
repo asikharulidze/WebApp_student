@@ -19,6 +19,9 @@ public class StudentController : Controller
         return View(_Students);
     }
     
+    
+
+    
 
     
     // Add or edit a Students
@@ -41,6 +44,32 @@ public class StudentController : Controller
                 existingStudent.Email = student.Email;
             }
         }
+        return RedirectToAction("Index");
+    }
+    
+    //Edit Student
+    public IActionResult Edit(int id)
+    {
+        var student = _Students.FirstOrDefault(s => s.Id == id);
+        if (student == null)
+        {
+            return NotFound(); 
+        }
+    
+        return View(student); 
+    }
+    [HttpPost]
+    public IActionResult EditStudent(Student updatedStudent)
+    {
+        var existingStudent = _Students.FirstOrDefault(s => s.Id == updatedStudent.Id);
+        if (existingStudent != null)
+        {
+            existingStudent.Name = updatedStudent.Name;
+            existingStudent.Age = updatedStudent.Age;
+            existingStudent.Grade = updatedStudent.Grade;
+            existingStudent.Email = updatedStudent.Email;
+        }
+
         return RedirectToAction("Index");
     }
     

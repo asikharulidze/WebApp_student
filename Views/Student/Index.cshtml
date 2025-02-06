@@ -24,9 +24,10 @@
         <td>@student.Grade</td>
         <td>@student.Email</td>
         <td>
-            <a href="@Url.Action("index", "Student", new { id = student.Id })" class="link-warning">
+            <a href="@Url.Action("Edit", "Student", new { id = student.Id })" class="link-warning">
                 Edit
             </a>
+
             <a href="@Url.Action("DeleteStudent", "Student", new { id = student.Id })" class="link-danger">
                 Delete
             </a>

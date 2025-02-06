@@ -1,0 +1,35 @@
+﻿@model Student
+<h1>Edit Student</h1>
+<table class="table">
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Grade</th>
+    <th>Address</th>
+    <th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <form asp-action="EditStudent" method="post">
+        <td>
+            <input type="hidden" asp-for="Id"/>
+            <input type="text" asp-for="Name" required placeholder="Name" class="form-control"/>
+        </td>
+        <td>
+            <input type="number" asp-for="Age" required placeholder="Age" class="form-control"/>
+        </td>
+        <td>
+            <input type="text" asp-for="Grade" placeholder="Grade" class="form-control"/>
+        </td>
+        <td>
+            <input type="email" asp-for="Email" placeholder="Email" class="form-control"/>
+        </td>
+        <td>
+            <button type="submit" class="btn btn-primary">Edit Student</button>
+        </td>
+    </form>
+</tr>
+</tbody>
+</table>
