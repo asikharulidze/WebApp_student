@@ -1,0 +1,25 @@
+﻿@model Student
+<table class="table">
+    <tr>
+        <td>
+            <input type="hidden" id="Id" name="Id"/>
+            <input type="text"  class="form-control" asp-for="Name"/>
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </td>
+        <td>
+            <input type="number"  class="form-control" asp-for="Age"/>
+            <span class="text-danger" asp-validation-for="Age"></span>
+        </td>
+        <td>
+            <input type="text"  class="form-control" asp-for="Grade"/>
+            <span class="text-danger" asp-validation-for="Grade"></span>
+        </td>
+        <td>
+            <input type="email"  class="form-control" asp-for="Email"/>
+            <span class="text-danger" asp-validation-for="Email"></span>
+        </td>
+        <td>
+            <button type="submit" class="btn btn-primary">Add Student</button>
+        </td>
+    </tr>
+</table>

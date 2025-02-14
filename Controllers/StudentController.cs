@@ -28,6 +28,10 @@ public class StudentController : Controller
     [HttpPost]
     public IActionResult SaveStudent(Student student)
     {
+        if (!ModelState.IsValid) 
+        {
+            return View("Index", _Students); 
+        }
         if (student.Id == 0) // New student
         {
             student.Id = _Students.Count > 0 ? _Students.Count() + 1 : 1;
