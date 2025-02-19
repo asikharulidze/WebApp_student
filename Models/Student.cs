@@ -4,7 +4,7 @@ namespace WebApp.Models
 {
     public class Student
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
         [StringLength(50, ErrorMessage = "Name cannot be longer than 50 characters")]

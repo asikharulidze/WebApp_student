@@ -28,10 +28,20 @@ public class StudentController : Controller
     [HttpPost]
     public IActionResult SaveStudent(Student student)
     {
-        if (!ModelState.IsValid) 
+        /*
+        foreach (var state in ModelState)
+        {
+            foreach (var error in state.Value.Errors)
+            {
+                Console.WriteLine($"Error in {state.Key}: {error.ErrorMessage}");
+            }
+        }
+        */
+        if (!ModelState.IsValid) //validation
         {
             return View("Index", _Students); 
         }
+        
         if (student.Id == 0) // New student
         {
             student.Id = _Students.Count > 0 ? _Students.Count() + 1 : 1;
